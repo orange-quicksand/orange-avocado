@@ -1,10 +1,15 @@
+var fs = require('fs');
 var mongoose = require('mongoose');
 
 var Game = require('./games/gamesModel.js');
 var Rom = require('./roms/romsModel.js');
 
 var library = require('./gameLibrary.js');
+
 var romLibrary = require('./romLibrary.js');
+if (fs.existsSync('server/romLibrary2.js')) {
+  romLibrary = require('./romLibrary2.js');
+}
 
 
 // SETTING UP DB CONNECTION
