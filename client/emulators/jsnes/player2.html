@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+    <div id="emulator"></div>
+    <script src="http://cdn.peerjs.com/0.3/peer.js"></script>
+    <script src="lib/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/nes.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/utils.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/cpu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/keyboard2.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/mappers.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/papu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/ppu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/rom.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/ui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+
+
+      var rtcId = location.search.slice(1);
+
+// Establish PeerJs connection
+    var peer = new Peer('player2' + rtcId, {key: 'j994bvub6smdkj4i'});
+
+// Connect to your game
+    peer.on('open', function (){
+      var c = peer.connect(rtcId);
+
+      c.on('open', function (data) {
+        console.log('hello peter');
+
+      });
+
+        //sending keydown 
+      $("body").keydown(function(e) {
+        
+        var stroke = {type: 'keydown', which: e.which};
+
+        c.send(stroke);
+      });
+        //sending keyup
+      $('body').keyup(function(e) {
+        var stroke = {type: 'keyup', which: e.which};
+
+        c.send(stroke);
+      });
+
+        //on click of restart, send restart method to other player
+      $( ".nes-restart" ).click(function() {
+        c.send({method: 'restart'});
+      });
+        //on click of pause, send pause method to other player
+      $( ".nes-pause" ).click(function() {
+        c.send({method: 'pause'});
+      });
+
+      c.on('data', function(data) {
+        console.log(data);
+        var convertedKey = keyPress[data.which];
+        console.log(convertedKey);
+        if (data.type === 'keyup') {
+          nes.keyboard.keyUp({keyCode: convertedKey});
+          // nes.frame();
+        }
+        if (data.type === 'keydown') {
+          nes.keyboard.keyDown({keyCode: convertedKey});
+          // nes.frame();
+        }
+          //Restart if other player clicks restart
+        // if (data.method === 'restart') {
+        //   $('.nes-restart').trigger('click');
+        // }
+        //   //pause if other player clicks pause
+        // if (data.method === 'pause') {
+        //   $('.nes-pause').trigger('click');
+        // }
+        
+      });
+
+    });
+
+    var keyPress = { 
+      37: 100,
+      38: 104,
+      39: 102,
+      40: 98,
+      88: 103,
+      90: 105,
+      13: 97,
+      17: 99
+    };
+
+        var nes;
+        $(function() {
+            nes = new JSNES({
+                'ui': $('#emulator').JSNESUI({
+                    "Homebrew": [
+                        ['Concentration Room', 'roms/croom/croom.nes'],
+                        ['LJ65', 'roms/lj65/lj65.nes'],
+                    ],
+                    "Working": [
+                        ['Bubble Bobble', 'local-roms/Bubble Bobble (U).nes'],
+                        
+                        ['Contra', 'roms/contra/Contra.nes'],
+                        ['Donkey Kong', 'local-roms/Donkey Kong (JU).nes'],
+                        ['Dr. Mario', 'local-roms/Dr. Mario (JU).nes'],
+                        ['Golf', 'local-roms/Golf (JU).nes'],
+                        ['The Legend of Zelda', 'local-roms/Legend of Zelda, The (U) (PRG1).nes'],
+                        ['Lemmings', 'local-roms/Lemmings (U).nes'],
+                        ['Lifeforce', 'local-roms/Lifeforce (U).nes'],
+                        
+                        ['Mario Bros.', 'local-roms/Mario Bros. (JU) [!].nes'],
+                        ['Mega Man', 'local-roms/Mega Man (U).nes'],
+                        ['Pac-Man', 'local-roms/Pac-Man (U) [!].nes'],
+                        ['Super Mario Bros.', 'local-roms/Super Mario Bros. (JU) (PRG0) [!].nes'],
+                        ['Tennis', 'local-roms/Tennis (JU) [!].nes'],
+                        ['Tetris', 'local-roms/Tetris (U) [!].nes'],
+                        ['Tetris 2', 'local-roms/Tetris 2 (U) [!].nes'],
+                        ['Zelda II - The Adventure of Link', 'local-roms/Zelda II - The Adventure of Link (U).nes']
+                    ],
+
+                    "Nearly Working": [
+                        ['Duck Hunt', 'local-roms/Duck Hunt (JUE) [!].nes'],
+                        ['Super Mario Bros. 3', 'local-roms/Super Mario Bros. 3 (U) (PRG1) [!].nes']
+                    ]
+                })
+            });
+        });
+    </script>
+    <!--[if IE]>
+        <script type="text/vbscript" src="source/jsnes-ie-hacks.vbscript"></script>
+    <![endif]-->
+
+</body>
+</html>
