@@ -20,3 +20,4 @@ server/data
 server/romLibrary2.js
 
 client/env/config.js
+client/emulators/jsnes/roms/
