@@ -1,4 +1,8 @@
-app.factory('Game', function($http, $location) {
+app.factory('Game', function($http, $location, myConfig) {
+
+  $http.defaults.headers.common['Application-Id'] = myConfig.id;
+  $http.defaults.headers.common['REST-API-Key'] = myConfig.key;
+
   return {
 
     // get (string)
@@ -8,7 +12,7 @@ app.factory('Game', function($http, $location) {
     // WHAT IT DOES
     //
     // Receives id of game and sends it through a GET request to the
-    // server. It either receives the game in a object which it then returns
+    // server. It either receives the game in an object which it then returns
     // or an error object that it then throws.
     //
     get: function(id) {

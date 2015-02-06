@@ -18,3 +18,5 @@ client/styles/*.css.map
 # Games data
 server/data
 server/romLibrary2.js
+
+client/env/config.js

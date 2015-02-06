@@ -7,7 +7,8 @@ var app = angular
     'ui.router',
     'lumx',
     'ngFx',
-    'monospaced.qrcode'
+    'monospaced.qrcode',
+    'App.config'
   ])
   
   .config(function ($stateProvider, $urlRouterProvider) {
