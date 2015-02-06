@@ -20,4 +20,3 @@ server/data
 server/romLibrary2.js
 
 client/emulators/jsnes/roms/
-client/emulators/node_modules/
