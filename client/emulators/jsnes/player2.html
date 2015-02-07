@@ -2,26 +2,31 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      button {
+        color: gray;
+      }
+    </style>
 </head>
 
 <body>
     <div id="emulator"></div>
     <script src="http://cdn.peerjs.com/0.3/peer.js"></script>
-    <script src="lib/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/nes.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/utils.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/cpu.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/keyboard2.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/mappers.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/papu.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/ppu.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/rom.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/ui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="emulators/jsnes/lib/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="emulators/jsnes/lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="emulators/jsnes/source/nes.js" type="text/javascript" charset="utf-8"></script>
+    <script src="emulators/jsnes/source/utils.js" type="text/javascript" charset="utf-8"></script>
+    <script src="emulators/jsnes/source/cpu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="emulators/jsnes/source/keyboard2.js" type="text/javascript" charset="utf-8"></script>
+    <script src="emulators/jsnes/source/mappers.js" type="text/javascript" charset="utf-8"></script>
+    <script src="emulators/jsnes/source/papu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="emulators/jsnes/source/ppu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="emulators/jsnes/source/rom.js" type="text/javascript" charset="utf-8"></script>
+    <script src="emulators/jsnes/source/ui.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
 
 
-      var rtcId = location.search.slice(1);
+      var rtcId = 8596;
 
 // Establish PeerJs connection
     var peer = new Peer('player2' + rtcId, {key: 'j994bvub6smdkj4i'});
@@ -105,7 +110,7 @@
                     "Working": [
                         ['Bubble Bobble', 'local-roms/Bubble Bobble (U).nes'],
                         
-                        ['Contra', 'roms/contra/Contra.nes'],
+                        ['Contra', 'emulators/jsnes/roms/contra/Contra.nes'],
                         ['Donkey Kong', 'local-roms/Donkey Kong (JU).nes'],
                         ['Dr. Mario', 'local-roms/Dr. Mario (JU).nes'],
                         ['Golf', 'local-roms/Golf (JU).nes'],

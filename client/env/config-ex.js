@@ -1,4 +1,4 @@
-app.module('App.config', [])
+angular.module('App.config', [])
 .constant('myConfig', {
     'id': '',
     'key': ''

@@ -33,5 +33,15 @@ var app = angular
         url: '/game/:id',
         templateUrl: 'app/game/GameTemplate.html',
         controller: 'GameController'
+      })
+      .state('nintendo', {
+        url: '/nintendo',
+        templateUrl: 'emulators/jsnes/index.html'
+        //controller: 'HomeController'
+      })
+      .state('player2', {
+        url: '/player2',
+        templateUrl: 'emulators/jsnes/player2.html'
+        //controller: 'HomeController'
       });
   });
