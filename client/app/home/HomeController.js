@@ -27,6 +27,9 @@ angular.module('uGame.home', [])
     $state.go('game', {id: id});
   };
 
+  $scope.goNintendo = function(){
+    $state.go('nintendo');
+  };
   // logout ()
   //----------
   // returns: null

@@ -5,7 +5,9 @@
   </header>
   
   <div class="games-list">
-    <h2>Games</h2>
+    <h2 ng-click="goNintendo()">Nintendo Games</h2>
+
+    <h2>GameBoy Games</h2>
     <img class="game-cover" ng-click="goToState(object.id)" ng-repeat="object in data" ng-src='/assets/{{object.image}}'/>    
     <!-- <div id="game-container" ng-repeat="object in data">
       <h1>{{object.title}}</h1>
@@ -13,5 +15,6 @@
       <p>{{object.description}}</p>
       <button  ng-class={{object.id}} class="btn btn--m btn--raised bgc-indigo-200 tc-indigo-600" lx-ripple="purple-600" ng-click="goToState(object.id)">Play {{object.title}}</button>
     </div> -->
+
   </div>
 </div>
